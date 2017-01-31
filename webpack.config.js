@@ -4,8 +4,8 @@ var webpack = require('webpack')
 module.exports = {
   entry: './src/index.js',
   output: {
-    path: path.resolve(__dirname, './dist'),
-    filename: 'csurl-browser.js'
+    path: path.resolve(__dirname, './lib'),
+    filename: 'csurl-browser.js',
   },
   module: {
     rules: [
@@ -23,7 +23,7 @@ module.exports = {
   performance: {
     hints: false
   },
-  devtool: '#eval-source-map'
+  devtool: '#source-map'
 }
 
 if (process.env.NODE_ENV === 'production') {
@@ -33,6 +33,11 @@ if (process.env.NODE_ENV === 'production') {
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: '"production"'
+      }
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
       }
     }),
     new webpack.LoaderOptionsPlugin({
