@@ -6,6 +6,8 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './lib'),
     filename: 'csurl-browser.js',
+    library: 'csurl-browser',
+    libraryTarget: 'umd'
   },
   module: {
     rules: [
